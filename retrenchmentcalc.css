@@ -1,0 +1,96 @@
+body {
+    outline-style: solid;
+    outline-color: rgb(80, 180, 245);
+    width: 400px;
+    height: auto;
+    font-family: monospace;
+    color: rgb(50, 118, 162);
+}
+
+h1 {
+    text-align: center;
+    padding-top:  4px;
+    margin-bottom: 2px
+}
+
+.my-form {
+    margin: 2px 15px;
+    padding: 15px;
+    border-style: solid;
+    border-color: rgba(80, 180, 245, 0.42);
+    letter-spacing: -1px;
+    word-spacing: -1px;
+}
+
+div.my-entry {
+    text-align: right;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.my-field {
+    margin: 2px;
+    width: 38%;
+    border: 2px solid rgb(45, 107, 147);
+    border-radius: 4px;
+    background-color: rgba(80, 180, 245, 0.42);
+}
+
+.my-radio-set {
+    display: inline;
+    margin-left: 32px;
+    margin-right: 28px
+}
+
+input[type=text]:focus {
+    background-color: lightblue;
+}
+
+.my-submit-btn {
+    background-color: rgba(45, 107, 147, 0.58);
+    border: none;
+    color: white;
+    padding: 12px 36px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;    
+}
+
+.my-submit-btn:hover {
+    color: black;
+}
+
+.my-submit-btn:active {
+    background-color: rgb(45, 107, 147);
+}
+
+div.my-payout {
+    border-style: solid;
+    float: left;
+    text-align: center;
+    font-size: 140%;
+    width: 150px
+}
+
+.icon-footer {
+    text-align: center;
+    padding-right: 30px;
+    margin-right: 10px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/*input[type=button], input[type=submit], input[type=reset] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}*/
