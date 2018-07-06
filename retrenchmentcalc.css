@@ -90,8 +90,10 @@ input[type=text]:focus {
 }
 
 .my-payout {
+    visibility: inherit;
     transition: all 2s;
     color: rgb(50, 118, 162, 0);
+    border-color: rgb(50, 118, 162, 0);
     border-style: solid;
     float: left;
     text-align: center;

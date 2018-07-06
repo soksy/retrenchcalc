@@ -99,13 +99,30 @@ function calculate() {
     var al = Number(document.getElementById("al").value);
     var lslt = Number(document.getElementById("lslt").value);
     var bcr = document.getElementById("bcr").value;
-    var payoutDisplay = document.querySelector('.my-payout')
-    var retrenchmentpay = calcretrenchpay(dateofbirth, startdate, finishdate, pilon, al, lslt, bcr);
-    var myPayout = document.getElementById("my-payout");
-    myPayout.innerHTML = "$" + retrenchmentpay;
+    var payoutDisplay = document.querySelector('#payout');
+    var payoutBox = document.querySelector('#payoutBox');
     
-    // change trasnparency, css has transition time
-    payoutDisplay.style.color = 'rgb(50, 118, 162, 1)';
+    retrenchmentpay = calcretrenchpay(dateofbirth, startdate, finishdate, pilon, al, lslt, bcr);
+    
+    if (isNaN(retrenchmentpay)) {
+        payoutDisplay.innerHTML = "Correct Your Data!";
+
+    } else {    
+        payoutDisplay.innerHTML = "PAYOUT<br>$" + retrenchmentpay;
+    }
+        
+    // change transparency to 1 to fade in, css has transition time
+    payoutBox.style.borderColor = "rgb(50, 118, 162, 1)";
+    payoutBox.style.color = "rgb(50, 118, 162, 1)";
+    setTimeout(clearDisplay, 4000);
+}
+
+function clearDisplay() {
+    var payoutBox = document.querySelector('#payoutBox')
+        color: ;
+    // change transparency to 0 fade out
+    payoutBox.style.borderColor = "rgb(50, 118, 162, 0)";
+    payoutBox.style.color = "rgb(50, 118, 162, 0)";
 }
 
 // setup
