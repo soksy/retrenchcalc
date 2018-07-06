@@ -7,6 +7,25 @@ body {
     color: rgb(50, 118, 162);
 }
 
+.row-of-three {
+
+}
+
+.col-one-of-three-col {
+    background-color: rgb(80, 180, 245);
+    width: 32.8%;
+    float: left;
+    color: white;
+    text-align: center;
+    border: solid rgba(226, 80, 245, 0.44) 1px;
+}
+
+.col-one-of-three-col:hover {
+    background-color: rgb(67, 150, 204);
+    cursor: pointer;
+    
+}
+
 h1 {
     text-align: center;
     padding-top:  4px;
@@ -58,11 +77,14 @@ input[type=text]:focus {
 }
 
 .my-submit-btn:hover {
-    color: black;
+    transform: ;
 }
 
+
 .my-submit-btn:active {
-    background-color: rgb(45, 107, 147);
+    background-color: rgb(45, 107, 147, 0.60);
+    transform: translateY(2px);
+    outline: none;
 }
 
 div.my-payout {

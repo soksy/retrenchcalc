@@ -91,17 +91,23 @@ function calcretrenchpay(dateofbirth, startdate, finishdate, pilon, al, lslt, bc
     return Math.floor(netpay);    
 }
 
-function calculate(form) {
-    var dateofbirth = form.dateofbirth.value;
-    var startdate = form.startdate.value;
-    var finishdate = form.finishdate.value;
-    var pilon = form.pilon.value;
-    var al = parseInt(form.al.value);
-    var lslt = form.lslt.value;
-    var bcr = form.bcr.value;
+function calculate() {
+    var dateofbirth = document.getElementById("dateofbirth").value;
+    var startdate = document.getElementById("startdate").value;
+    var finishdate = document.getElementById("finishdate").value;
+    var pilon = document.querySelector('input[name = "pilon"]:checked').value;
+    var al = Number(document.getElementById("al").value);
+    var lslt = Number(document.getElementById("lslt").value);
+    var bcr = document.getElementById("bcr").value;
 
     var retrenchmentpay = calcretrenchpay(dateofbirth, startdate, finishdate, pilon, al, lslt, bcr);
     var myPayout = document.getElementById("my-payout");
     myPayout.innerHTML = "$" + retrenchmentpay;
 }
+
+// setup
+(function() {
+    myBtn = document.querySelector("#calcbutton");
+    myBtn.addEventListener("click", calculate);
+})();
  

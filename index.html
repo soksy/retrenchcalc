@@ -13,49 +13,60 @@
         <title>Retrenchment Calculator</title>
     </head>
     <body>
+        <div class="row-of-three">
+            <div class='col-one-of-three-col'>
+                Option 1
+            </div>
+            <div class='col-one-of-three-col'>
+                Option 2
+            </div>
+            <div class='col-one-of-three-col'>
+                Option 3
+            </div>
+        </div>
         <h1>
             Retrenchment Calculator
         </h1>
-        <form class="my-form">
+        <div class="my-form">
             <div class="my-entry">
                 Date of Birth (dd/mm/yyyy)
-                <input class="my-field" type="date" name="dateofbirth" id="dateofbirth">
+                <input class="my-field" type="date" id="dateofbirth">
             </div>
             <div class="my-entry">
                 Date of Employment (dd/mm/yyyy)
-                <input class="my-field" type="date" name="startdate">
+                <input class="my-field" type="date" id="startdate">
             </div>
             <div class="my-entry">
                 Termination Date (dd/mm/yyyy)
-                <input class="my-field" type="date" name="finishdate">
+                <input class="my-field" type="date" id="finishdate">
             </div>
             <div class="my-entry">
                 Accrued Annual Leave (days)
-                <input class="my-field" type="number" name="al">
+                <input class="my-field" type="number" id="al">
             </div>
             <div class="my-entry">
                 Long Service Leave Taken (days)
-                <input class="my-field" type="number" name="lslt">
+                <input class="my-field" type="number" id="lslt">
             </div>
             <div class="my-entry">
                 Pay In Lieu of Notice
                 <div class="my-radio-set">
-                    <input type="radio" name="pilon" value="yes">yes
-                    <input type="radio" name="pilon" value="no">no
+                    <input type="radio" id="pilon0" name="pilon" value="no" checked="checked">no
+                    <input type="radio" id="pilon1" name="pilon" value="yes">yes
                 </div>
             </div>
             <div class="my-entry">
                 BCR
-                <input class="my-field" type="password" name="bcr">
+                <input class="my-field" type="password" id="bcr">
             </div>
             <div class="my-payout">
                 <div>Payout</div>
                 <div id="my-payout">$</div>
             </div>
             <div class="my-entry">
-                <input class="my-submit-btn clearfix" type="button" value="Calculate" onClick="calculate(this.form)" id="calcbutton">
+                <button class="my-submit-btn clearfix" onClick="calculate()" id="calcbutton">CALCULATE</button>
             </div>
-        </form>
+        </div>
         
         <div class="icon-footer">
             <i class="fa fa-cloud"></i>
