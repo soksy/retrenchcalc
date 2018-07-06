@@ -99,10 +99,13 @@ function calculate() {
     var al = Number(document.getElementById("al").value);
     var lslt = Number(document.getElementById("lslt").value);
     var bcr = document.getElementById("bcr").value;
-
+    var payoutDisplay = document.querySelector('.my-payout')
     var retrenchmentpay = calcretrenchpay(dateofbirth, startdate, finishdate, pilon, al, lslt, bcr);
     var myPayout = document.getElementById("my-payout");
     myPayout.innerHTML = "$" + retrenchmentpay;
+    
+    // change trasnparency, css has transition time
+    payoutDisplay.style.color = 'rgb(50, 118, 162, 1)';
 }
 
 // setup
