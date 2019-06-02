@@ -1,13 +1,13 @@
-import java.time;
 import java.time.LocalDate;
 
 class RentrenchCalc {
     public static void main(String args[]) {
-        double retrenchmentpay; 
+        double retrenchmentpay;
 
         System.out.println("Calculating your retrenchment since 2013");
 
-        retrenchmentpay = Calcs.calcRetrenchPay(LocalDate.of(1968,2,22), LocalDate.of(2009,2,19), LocalDate.now(), "yes", 10, 0, 220000);
+        retrenchmentpay = Calcs.calcRetrenchPay(LocalDate.of(1967, 2, 22), LocalDate.of(2009, 2, 19), LocalDate.now(),
+                "yes", 10, 0, 220000);
         System.out.println(retrenchmentpay);
     }
 }
@@ -18,7 +18,8 @@ class Calcs {
         int DD = gregorianDate.getDayOfMonth();
         int YYYY = gregorianDate.getYear();
         int HR = 12;
-        int MN = 0;;
+        int MN = 0;
+
         int SC = 0;
         double JD, J1;
         int GGG, S, A;
@@ -27,7 +28,7 @@ class Calcs {
             GGG = 0;
         } else {
             GGG = 1;
-        }    
+        }
 
         HR = HR + (MN / 60) + (SC / 3600);
 
@@ -35,7 +36,7 @@ class Calcs {
         S = 1;
         if ((MM - 9) < 0) {
             S = -1;
-        } 
+        }
 
         A = Math.abs(MM - 9);
         J1 = Math.floor(YYYY + S * Math.floor(A / 7));
@@ -44,16 +45,18 @@ class Calcs {
         JD = JD + 1721027 + 2 * GGG + 367 * YYYY - 0.5;
         JD = JD + (HR / 24);
 
-        return JD;    
+        return JD;
     }
 
-    public static double calcRetrenchPay (LocalDate dateofbirth, LocalDate startdate, LocalDate finishdate, String pilon, double al, double lslt, double bcr) {
-        double yeardiff, lsl, weeklypay, alw, taxfree, grossretrenchpay, grossleavepay, netretrenchpay, netleavepay, netpay;
-        
+    public static double calcRetrenchPay(LocalDate dateofbirth, LocalDate startdate, LocalDate finishdate, String pilon,
+            double al, double lslt, double bcr) {
+        double yeardiff, lsl, weeklypay, alw, taxfree, grossretrenchpay, grossleavepay, netretrenchpay, netleavepay,
+                netpay;
+
         yeardiff = (julianDate(finishdate) - julianDate(startdate)) / 365.25;
-    
+
         weeklypay = bcr / 52;
-        
+
         // pay for long service leave only available after 5 years
         // note lsl is caclulated here in weeks!
         if (yeardiff > 5) {
@@ -61,28 +64,32 @@ class Calcs {
         } else {
             lsl = 0;
         }
-        
+
         // garden leave or pay in lieu
-        if (pilon == "yes") {
+        if (pilon.equals("yes")) {
             al = 20 + al;
-            // over 45 you get an extra week! This is a quick but slightly dud way of calcing age need to rewrite properly
+            // over 45 you get an extra week! This is a quick but slightly dud way of
+            // calcing age need to rewrite properly
             if ((julianDate(finishdate) - julianDate(dateofbirth)) > 16435) {
                 al = al + 5;
             }
         }
 
         alw = al / 5;
-        
-        // redundancy pay tax free limit is $10155 + ($5078 * completed years of service)
+
+        // redundancy pay tax free limit is $10155 + ($5078 * completed years of
+        // service)
         taxfree = 10155 + (Math.floor(yeardiff) * 5078);
 
-        //ETP Cap is currently $200,000 need to incorporate this somewhere, tax rate below prservation age (usually 60) is 32%.
-        //Whole of income Cap is $180,000 - whatever else you earned in the tax year of retrenchment (including payments for accrued leave and long service)
-        
+        // ETP Cap is currently $200,000 need to incorporate this somewhere, tax rate
+        // below prservation age (usually 60) is 32%.
+        // Whole of income Cap is $180,000 - whatever else you earned in the tax year of
+        // retrenchment (including payments for accrued leave and long service)
+
         // Accrued leave and long service is non-ETP
         // Pay in lieu of notice is ETP
-        // Unused sick leave is ETP 
-        
+        // Unused sick leave is ETP
+
         grossretrenchpay = (4 * weeklypay) + (3 * (yeardiff - 1) * weeklypay);
 
         // accrued annual and long service leave are taxed at 32%
@@ -94,13 +101,15 @@ class Calcs {
         if (grossretrenchpay <= taxfree) {
             netretrenchpay = grossretrenchpay;
         } else {
-            // if grossretrenchpay is greater than tax free limit, net pay is (taxfree amount) + (everything above the taxfree amount taxed at ETP rates, then marginal rates if it exceeds Caps)
+            // if grossretrenchpay is greater than tax free limit, net pay is (taxfree
+            // amount) + (everything above the taxfree amount taxed at ETP rates, then
+            // marginal rates if it exceeds Caps)
             netretrenchpay = taxfree + (((grossretrenchpay - taxfree) * 0.94) * 0.68);
         }
-        
-        netpay =  netretrenchpay + netleavepay;
-        
-        return Math.floor(netpay);    
+
+        netpay = netretrenchpay + netleavepay;
+
+        return Math.floor(netpay);
 
     }
 }
